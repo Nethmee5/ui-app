@@ -5,6 +5,7 @@ const ParentComponent = (props) =>{
  const [name,setName] = useState('Nethmee');
  const [text,setText] = useState('');
  const [clicked,setClicked] = useState(false);
+ const [message,setMessage] = useState('');
 
  const changeText =(e)=>{
     setText(e.target.value);
@@ -12,6 +13,9 @@ const ParentComponent = (props) =>{
 const showName = () =>{
   setName(text);
  }
+const handleChildMessage = (data) =>{
+  setMessage(data);
+}
 
 const handleChildClick = (isClicked) =>{
     setClicked(isClicked);
@@ -23,7 +27,9 @@ return (
 <p>Enter your name:</p>
     <input type='text' placeholder='enter your name' onChange={changeText}></input>
     <button onClick={showName}>show name</button>
-    <ChildComponent name={name} handleClick = {handleChildClick}  />
+    <p>Message from Child: {message}</p>
+
+    <ChildComponent name={name} handleClick = {handleChildClick} dataSendToParent = {handleChildMessage} />
 </div>
      
     );
